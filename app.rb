@@ -1,4 +1,11 @@
-require_relative 'config/environment'
+require 'sinatra'
+require 'sinatra/activerecord'
 
-class App < Sinatra::Base
-end
+set :database, "sqlite3:project-name.sqlite3"
+
+require './models'
+
+get '/' do
+    @users = User.all
+    erb :index
+  end
